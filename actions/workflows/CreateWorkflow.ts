@@ -12,7 +12,7 @@ export async function createWorkflow(form: createWorkflowSchemaType) {
     if(!success) {
         throw new Error("invalid form data");
     }
-    const {userId} = auth();
+    const { userId } = await auth();
 
     if(!userId) {
     throw new Error("unauthenticated")
@@ -23,6 +23,8 @@ export async function createWorkflow(form: createWorkflowSchemaType) {
             userId,
             status: WorkflowStatus.DRAFT,
             definition: "TODO",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
             ...data,
         },
     });
