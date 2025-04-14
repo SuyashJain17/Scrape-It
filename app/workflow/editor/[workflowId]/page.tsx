@@ -1,7 +1,7 @@
 
 import { auth } from '@clerk/nextjs/server';
 
-import Editor from '@/app/workflow/_components/editor';
+import Editor from '@/app/workflow/_components/Editor';
 
 import {prisma} from '@/lib/prisma';
 
