@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { TaskType } from "@/types/task";
 import { AppNode } from "@/types/appNode";
-import { createFlowNode } from "@/lib/workflow/createFlowNode";
+import { CreateFlowNode } from "@/lib/workflow/createFlowNode";
 
 export default function NodeHeader({
   taskType,
@@ -52,7 +52,7 @@ export default function NodeHeader({
                   const node = getNode(nodeId) as AppNode;
                   const newX = node.position.x;
                   const newY = node.position.y;
-                  const newNode = createFlowNode(node.data.type, {
+                  const newNode = CreateFlowNode(node.data.type, {
                     x: newX,
                     y: newY + node.measured?.height! + 20,
                   });
