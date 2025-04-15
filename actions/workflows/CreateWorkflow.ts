@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs/server';
 import { Edge } from '@xyflow/react';
 
-import {prisma} from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { CreateFlowNode } from '@/lib/workflow/createFlowNode';
 import { createWorkflowSchema, type createWorkflowSchemaType } from '@/schema/workflow';
 import { WorkflowStatus } from '@/types/workflow';
@@ -29,15 +29,21 @@ export async function createWorkflow(form: createWorkflowSchemaType) {
     edges: [],
   };
 
-  // Let's add the flow entry point
+  // Add initial browser launch node
   initialFlow.nodes.push(CreateFlowNode(TaskType.LAUNCH_BROWSER));
+
+  // Extract expected fields from validated schema result
+  const { name, description } = data;
 
   const result = await prisma.workflow.create({
     data: {
       userId,
       status: WorkflowStatus.DRAFT,
       definition: JSON.stringify(initialFlow),
-      ...data,
+      name,
+      description,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     },
   });
 
