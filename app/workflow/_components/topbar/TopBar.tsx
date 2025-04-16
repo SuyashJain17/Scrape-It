@@ -5,7 +5,7 @@ import { ChevronLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
 import React from "react" 
 import SaveBtn from "./SaveBtn"
-import { ExecuteBtn } from "./ExecuteBtn"
+import ExecuteBtn from "./ExecuteBtn"
 
 interface Props {
     title: string;
