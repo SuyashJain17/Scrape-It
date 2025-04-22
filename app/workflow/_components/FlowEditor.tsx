@@ -90,12 +90,10 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
 
     const isValidConnection = useCallback(
         (connection: Edge | Connection) => {
-            // Self-connection not allowed
             if (connection.source === connection.target) {
                 return false;
             }
 
-            // Same taskParam type connection not allowed
             const source = nodes.find((node) => node.id === connection.source);
             const target = nodes.find((node) => node.id === connection.target);
             if (!source || !target) {

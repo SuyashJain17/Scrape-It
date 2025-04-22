@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import UserAvailableCreditsBadge from "./UserAvailableCreditsBadge";
 
 const routes = [
   {
@@ -48,7 +49,7 @@ function DesktopSidebar() {
       <div className="flex items-center justify-center gap-2 border-b-[1px] border-seperate p-4">
         <Logo />
       </div>
-      <div className="p-2">TODO CREDITS</div>
+      <div className="p-2"> <UserAvailableCreditsBadge/> </div>
       <div className="flex flex-col p-2">
         {routes.map((route) => (
           <Link
@@ -70,7 +71,7 @@ function DesktopSidebar() {
   );
 }
 export function MobileSidebar() {
-  const { isOpen, setOpen } = useState();
+  const [isOpen, setOpen] = useState(false);
   const pathName = usePathname();
   const activeRoute =
     routes.find(

@@ -5,7 +5,7 @@ import useExecutionPlan from "@/components/hooks/useExecutionPlan"
 import { PlayIcon } from "lucide-react"
 import React from "react"
 import { useMutation } from "@tanstack/react-query"
-import { RunWorkflow } from "@/actions/workflows/runWorkflow"
+import { runWorkflow } from "@/actions/workflows/runWorkflow"
 import { toast } from "sonner"
 import { useReactFlow } from "@xyflow/react"
 
@@ -14,7 +14,7 @@ export default function ExecuteBtn({ workflowId }: { workflowId: string }) {
     const { toObject } = useReactFlow();
   
     const mutation = useMutation({
-      mutationFn: RunWorkflow,
+      mutationFn: runWorkflow,
       onSuccess: () => {
         toast.success('Execution started', { id: 'flow-execution' });
       },

@@ -27,6 +27,10 @@ export default async function EditorPage({ params }: { params: { workflowId: str
 
   return (
   <div className="flex h-full w-full flex-col overflow-hidden">
-  <Editor workflow={workflow} />
+  <Editor workflow={{
+    ...workflow,
+    createdAt: workflow.createdAt.toISOString(),
+    updatedAt: workflow.updatedAt.toISOString(),
+  }} />
   </div>)
 }

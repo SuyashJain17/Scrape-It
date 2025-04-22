@@ -41,5 +41,5 @@ async function ExecutionViewerWrapper({
     if(!workflowExecution) {
         return <div>Not Found</div>
     }
-    return <ExecutionViewer execution={workflowExecution}/>;
+    return <ExecutionViewer initialData={workflowExecution}/>;
 }
