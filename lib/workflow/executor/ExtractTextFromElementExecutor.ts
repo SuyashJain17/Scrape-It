@@ -7,14 +7,12 @@ export async function ExtractTextFromElementExecutor(
   environment: ExecutionEnvironment<typeof ExtractTextFromElementTask>
 ): Promise<boolean> {
   try {
-    const selector = environment.getInput(ExtractTextFromElementTask.inputs[1]); 
-
+    const selector = environment.getInput('Selector');
     if (!selector) {
       environment.log.error('Selector not defined');
       return false;
     }
-    const html = environment.getInput(ExtractTextFromElementTask.inputs[0]);
-
+    const html = environment.getInput('Html');
     if (!html) {
       environment.log.error('Html not defined');
       return false;
@@ -34,8 +32,7 @@ export async function ExtractTextFromElementExecutor(
       return false;
     }
 
-    environment.setOutput(ExtractTextFromElementTask.outputs[0], extractedText);
-
+    environment.setOutput('Extracted text', extractedText);
 
     return true;
   } catch (error: any) {

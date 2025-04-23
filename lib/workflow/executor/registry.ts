@@ -15,6 +15,6 @@ type RegistryType = {
 
 export const ExecutorRegistry = {
     Launch_Browser: LaunchBrowserExecutor,
-    PAGE_TO_HTML: () => PageToHtmlExecutor,
-    EXTRACT_TEXT_FROM_ELEMENT: () => ExtractTextFromElementExecutor,
+    PAGE_TO_HTML: PageToHtmlExecutor,
+    EXTRACT_TEXT_FROM_ELEMENT: ExtractTextFromElementExecutor,
 }

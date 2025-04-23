@@ -48,6 +48,7 @@ import DuplicateWorkflowDialog from './DuplicateWorkflowDialog';
 
 import { cn } from '@/lib/utils';
 import {WorkflowExecutionStatus ,WorkflowStatus } from '@/types/workflow';
+import RunBtn from './RunBtn';
 
 const statusColors = {
   [WorkflowStatus.DRAFT]: 'bg-yellow-400 text-yellow-600',
