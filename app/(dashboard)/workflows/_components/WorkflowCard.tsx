@@ -2,19 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-
-type Workflow = {
-  id: string;
-  name: string;
-  description: string;
-  status: string;
-  creditsCost: number;
-  cron: string | null;
-  lastRunAt: Date | null;
-  lastRunStatus: string | null;
-  lastRunId: string | null;
-  nextRunAt: Date | null;
-};
+import { Workflow } from '@prisma/client';
 import {
   ChevronRightIcon,
   ClockIcon,
@@ -41,14 +29,17 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
-import TooltipWrapper from '@/components/TooltipWrapper'
+import TooltipWrapper from '@/components/TooltipWrapper';
 import DeleteWorkflowDialog from './DeleteWorkflowDialog';
+import RunBtn from './RunBtn';
+import SchedulerDialog from './SchedulerDialogue';
+import ExecutionStatusIndicator, { 
+  ExecutionStatusLabel,
+} from '@/app/workflow/runs/[workflowId]/_components/ExecutionStatusIndicator';
 import DuplicateWorkflowDialog from './DuplicateWorkflowDialog';
 
-
 import { cn } from '@/lib/utils';
-import {WorkflowExecutionStatus ,WorkflowStatus } from '@/types/workflow';
-import RunBtn from './RunBtn';
+import { WorkflowExecutionStatus, WorkflowStatus } from '@/types/workflow';
 
 const statusColors = {
   [WorkflowStatus.DRAFT]: 'bg-yellow-400 text-yellow-600',
@@ -170,6 +161,7 @@ function ScheduleSection({
   return (
     <div className="flex items-center gap-2">
       <CornerDownRightIcon className="h-4 w-4 text-muted-foreground" />
+      <SchedulerDialog workflowId={workflowId} cron={cron} key={`${cron}-${workflowId}`} />
       <MoveRightIcon className="h-4 w-4 text-muted-foreground" />
       <TooltipWrapper content="Credit consumption for full run">
         <div className="flex items-center gap-3">
@@ -200,6 +192,10 @@ function LastRunDetails({ workflow }: { workflow: Workflow }) {
       <div className="flex items-center text-sm gap-2">
         {lastRunAt && (
           <Link href={`/workflow/runs/${workflow.id}/${lastRunId}`} className="flex items-center text-sm gap-2 group">
+            <span>Last run:</span>
+            <ExecutionStatusIndicator status={lastRunStatus as WorkflowExecutionStatus} />
+            <ExecutionStatusLabel status={lastRunStatus as WorkflowExecutionStatus} />
+            <span>{formattedStartedAt}</span>
             <ChevronRightIcon size={14} className="-translate-x-[2px] group-hover:translate-x-0 transition" />
           </Link>
         )}

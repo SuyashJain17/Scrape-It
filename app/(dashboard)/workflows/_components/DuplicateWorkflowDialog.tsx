@@ -15,7 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import CustomDialogHeader from '@/components/CustomDialogHeader';
 
 import { cn } from '@/lib/utils';
-import duplicateWorkflow from '@/actions/workflows/deleteWorkflow';
+import { duplicateWorkflow } from '@/actions/workflows/duplicateWorkflow';
 import { duplicateWorkflowSchema, duplicateWorkflowSchemaType } from '@/schema/workflow';
 
 export default function DuplicateWorkflowDialog({ workflowId }: { workflowId: string }) {
