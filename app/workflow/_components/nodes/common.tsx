@@ -1,6 +1,8 @@
-import { ST } from "next/dist/shared/lib/utils";
+import { TaskParamType } from '@/types/task';
 
-export const ColorForHandle = {
-    BROWSER_INSTANCE: "!bg-sky-400",
-    STRING: "!bg-emerald-400",
-}
+export const ColorForHandle: Record<TaskParamType, string> = {
+  STRING: '!bg-amber-400',
+  BROWSER_INSTANCE: '!bg-sky-400',
+  SELECT: '!bg-rose-400',
+  CREDENTIAL: '!bg-teal-400',
+};

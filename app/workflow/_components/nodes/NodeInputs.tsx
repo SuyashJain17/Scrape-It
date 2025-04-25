@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { TaskParam } from "@/types/task";
 import { Position, useEdges } from "@xyflow/react";
 import { Handle } from "@xyflow/react";
-import { NodeParamField } from "./NodeParamField";
+import  NodeParamField  from "./NodeParamField";
 import { ColorForHandle } from "./common";
 import useFlowValidation from "@/components/hooks/useFlowValidation";
 
