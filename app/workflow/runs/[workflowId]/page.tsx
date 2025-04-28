@@ -1,15 +1,15 @@
 import { Suspense } from 'react';
 import { InboxIcon, Loader2Icon } from 'lucide-react';
 
-import  TopBar  from '../../_components/topbar/TopBar';
-import ExecutionsTable from './_components/ExecutionsTable';
+import Topbar from '@/app/workflow/_components/topbar/topbar';
+import ExecutionsTable from '@/app/workflow/runs/[workflowId]/_components/executions-table';
 
-import { getWorkflowExecutions } from '@/actions/workflows/getWorkflowExecutions';
+import { getWorkflowExecutions } from '@/actions/workflows/get-workflow-executions';
 
 export default function ExecutionsPage({ params }: { params: { workflowId: string } }) {
   return (
     <div className="h-full w-full overflow-auto">
-      <TopBar workflowId={params.workflowId} hideButtons title="All runs" subtitle="List of all you workflow runs" />
+      <Topbar workflowId={params.workflowId} hideButtons title="All runs" subtitle="List of all you workflow runs" />
       <Suspense
         fallback={
           <div className="flex h-full w-full justify-center items-center">

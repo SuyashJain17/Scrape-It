@@ -2,7 +2,7 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import { stripe } from '@/lib/stripe/stripe';
-import { handleCheckoutSessionCompleted } from '@/lib/stripe/handleCheckoutSessionCompleted';
+import { handleCheckoutSessionCompleted } from '@/lib/stripe/handle-checkout-session-completed';
 
 export async function POST(request: Request) {
   const body = await request.text();

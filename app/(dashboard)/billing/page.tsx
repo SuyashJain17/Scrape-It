@@ -3,14 +3,14 @@ import { ArrowLeftRightIcon, CoinsIcon } from 'lucide-react';
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import ReactCountUpWrapper from '@/components/ReactCountUpWrapper';
-import CreditsPurchase from './_components/CreditsPurchase';
-import CreditUsageChart from './_components/CreditUsageChart';
-import InvoiceBtn from './_components/InvoiceBtn';
+import ReactCountUpWrapper from '@/components/react-count-up-wrapper';
+import CreditsPurchase from '@/app/(dashboard)/billing/_components/credits-purchase';
+import CreditUsageChart from '@/app/(dashboard)/billing/_components/credit-usage-chart';
+import InvoiceBtn from '@/app/(dashboard)/billing/_components/invoice-btn';
 
-import GetAvailableCredits from '@/actions/billing/getAvailableCedits';
-import { getCreditsUsageInPeriod } from '@/actions/analytics/getCreditsUsageInPeriod';
-import { getUserPurchaseHistory } from '@/actions/billing/getUserPurchaseHistory';
+import { getAvailableCredits } from '@/actions/billing/get-available-credits';
+import { getCreditsUsageInPeriod } from '@/actions/analytics/get-credits-usage-in-period';
+import { getUserPurchaseHistory } from '@/actions/billing/get-user-purchase-history';
 import { Period } from '@/types/analytics';
 
 export default function BillingPage() {
@@ -32,7 +32,7 @@ export default function BillingPage() {
 }
 
 async function BalanceCard() {
-  const userBalance = await GetAvailableCredits();
+  const userBalance = await getAvailableCredits();
 
   return (
     <Card className="bg-gradient-to-br from-primary/10 via-primary/5 to-background border-primary/20 shadow-lg flex justify-between flex-col overflow-hidden">

@@ -1,45 +1,48 @@
-import { GetWorkflowExecutionWithPhases } from "@/actions/workflows/GetWorkflowExecutionWithPhases"
-import  TopBar  from "@/app/workflow/_components/topbar/TopBar"
-import { Loader2Icon } from "lucide-react"
-import { Suspense } from "react"
-import ExecutionViewer from "./_components/ExecutionViewer"
+import { Suspense } from 'react';
+import { Loader2Icon } from 'lucide-react';
 
-export default function ExecutionViewerPage({params}: {
-    params: {
-        executionId: string,
-        workflowId: string
-    }
+import Topbar from '@/app/workflow/_components/topbar/topbar';
+import ExecutionViewer from '@/app/workflow/runs/[workflowId]/[executionId]/_components/execution-viewer';
+
+import { getWorkflowExecutionWithPhases } from '@/actions/workflows/get-workflow-execution-with-phases';
+
+export default function ExecutionViewerPage({
+  params,
+}: {
+  params: {
+    executionId: string;
+    workflowId: string;
+  };
 }) {
-    return (
-        <div className="flex flex-col h-screen w-full overflow-hidden">
-            <TopBar 
-                workflowId={params.workflowId}
-                title="Workflow run details"
-                subtitle={`Run ID: ${params.executionId}`}
-                hideButtons
-            />
-            <section className="flex h-full overflow-auto">
-                <Suspense fallback={
-                    <div className="flex w-full items-center justify-center">
-                        <Loader2Icon className="h-10 w-10 animate-spin stroke-primary" />
-                    </div>
-                }>
-                    <ExecutionViewerWrapper  executionId={params.executionId}/>
-                </Suspense>
-            </section>
-        </div>
-    )
+  return (
+    <div className="flex flex-col h-screen w-full overflow-hidden">
+      <Topbar
+        workflowId={params.workflowId}
+        title="Workflow run details"
+        subtitle={`Run ID: ${params.executionId}`}
+        hideButtons
+      />
+      <section className="flex h-full overflow-auto">
+        <Suspense
+          fallback={
+            <div className="flex w-full items-center justify-center">
+              <Loader2Icon className="h-10 w-10 animate-spin stroke-primary" />
+            </div>
+          }
+        >
+          <ExecutionViewerWrapper executionId={params.executionId} />
+        </Suspense>
+      </section>
+    </div>
+  );
 }
 
-async function ExecutionViewerWrapper({
-    executionId
-}: {
-    executionId: string;
-}) {
+async function ExecutionViewerWrapper({ executionId }: { executionId: string }) {
+  const workflowExecution = await getWorkflowExecutionWithPhases(executionId);
 
-    const workflowExecution = await GetWorkflowExecutionWithPhases(executionId);
-    if(!workflowExecution) {
-        return <div>Not Found</div>
-    }
-    return <ExecutionViewer initialData={workflowExecution}/>;
+  if (!workflowExecution) {
+    return <div>Not found</div>;
+  }
+
+  return <ExecutionViewer initialData={workflowExecution} />;
 }

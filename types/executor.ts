@@ -7,8 +7,9 @@ export type Environment = {
   browser?: Browser;
   page?: Page;
 
+  // Phases with nodeId/taskId as key
   phases: Record<
-    string, 
+    string, //key: nodeId/taskId
     {
       inputs: Record<string, string>;
       outputs: Record<string, string>;

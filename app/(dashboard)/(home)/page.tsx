@@ -2,15 +2,15 @@ import { Suspense } from 'react';
 import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from 'lucide-react';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import PeriodSelector from './_components/PeriodSelector';
-import StatsCard from './_components/StatsCard';
-import ExecutionStatusChart from './_components/ExecutionStatusChart';
-import CreditUsageChart from '../billing/_components/CreditUsageChart';
+import PeriodSelector from '@/app/(dashboard)/(home)/_components/period-selector';
+import StatsCard from '@/app/(dashboard)/(home)/_components/stats-card';
+import ExecutionStatusChart from '@/app/(dashboard)/(home)/_components/execution-status-chart';
+import CreditUsageChart from '@/app/(dashboard)/billing/_components/credit-usage-chart';
 
-import { getPeriods } from '@/actions/analytics/getPeriods';
-import { getStatsCardsValues } from '@/actions/analytics/getStatsCardsValues';
-import { getWorkflowExecutionStats } from '@/actions/analytics/getWorkflowExecutionStats';
-import { getCreditsUsageInPeriod } from '@/actions/analytics/getCreditsUsageInPeriod';
+import { getPeriods } from '@/actions/analytics/get-periods';
+import { getStatsCardsValues } from '@/actions/analytics/get-stats-cards-values';
+import { getWorkflowExecutionStats } from '@/actions/analytics/get-workflow-execution-stats';
+import { getCreditsUsageInPeriod } from '@/actions/analytics/get-credits-usage-in-period';
 import { Period } from '@/types/analytics';
 
 export default function HomePage({ searchParams }: { searchParams: { month?: string; year?: string } }) {

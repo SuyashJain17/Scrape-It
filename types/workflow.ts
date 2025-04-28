@@ -1,7 +1,7 @@
 import { LucideProps } from 'lucide-react';
 
 import { TaskParam, TaskType } from '@/types/task';
-import { AppNode } from '@/types/appNode';
+import { AppNode } from '@/types/appnode';
 
 export enum WorkflowStatus {
   DRAFT = 'DRAFT',

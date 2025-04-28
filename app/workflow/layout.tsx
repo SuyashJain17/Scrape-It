@@ -1,8 +1,6 @@
-import Logo from '@/components/Logo';
-import { ModeToggle } from '@/components/ThemeModeToggle';
+import Logo from '@/components/logo';
+import { ModeToggle } from '@/components/thememode-toggle';
 import { Separator } from '@/components/ui/separator';
-import '@xyflow/react/dist/style.css';
-import React from 'react';
 
 export default function WorkflowLayout({ children }: { children: React.ReactNode }) {
   return (

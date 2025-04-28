@@ -5,10 +5,10 @@ import { LockKeyholeIcon, ShieldIcon, ShieldOffIcon } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card } from '@/components/ui/card';
-import CreateCredentialDialog from './_components/CreateCredentialDialog';
-import DeleteCredentialDialog from './_components/DeleteCredentialDialog';
+import CreateCredentialDialog from '@/app/(dashboard)/credentials/_components/create-credential-dialog';
+import DeleteCredentialDialog from '@/app/(dashboard)/credentials/_components/delete-credential-dialog';
 
-import { getCredentialsForUser } from '@/actions/credentials/getCredentialsForUser';
+import { getCredentialsForUser } from '@/actions/credentials/get-credentials-for-user';
 
 export default function CredentialsPage() {
   return (

@@ -1,13 +1,13 @@
 import { auth } from '@clerk/nextjs/server';
 
-import Editor from '../../_components/Editor';
+import Editor from '@/app/workflow/_components/editor';
 
-import {prisma} from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 export default async function EditorPage({ params }: { params: { workflowId: string } }) {
   const { workflowId } = params;
 
-  const { userId } = await auth();
+  const { userId } = auth();
 
   if (!userId) {
     return <div>Unauthenticated</div>;

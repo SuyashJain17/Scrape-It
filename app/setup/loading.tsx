@@ -1,7 +1,7 @@
 import { Loader2Icon } from 'lucide-react';
 
 import { Separator } from '@/components/ui/separator';
-import Logo from '@/components/Logo';
+import Logo from '@/components/logo';
 
 export default function SetupLoading() {
   return (

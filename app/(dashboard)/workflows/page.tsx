@@ -3,10 +3,10 @@ import { AlertCircle, InboxIcon } from 'lucide-react';
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import CreateWorkflowDialog from './_components/CreateWorkflowDialog';
-import WorkflowCard from './_components/WorkflowCard';
-import { getWorkflowForUser } from '@/actions/workflows/getWorkflowForUser';
+import CreateWorkflowDialog from '@/app/(dashboard)/workflows/_components/create-workflow-dialog';
+import WorkflowCard from '@/app/(dashboard)/workflows/_components/workflow-card';
 
+import { getWorkflowsForUser } from '@/actions/workflows/get-workflows-for-user';
 
 export default function WorkflowsPage() {
   return (
@@ -39,7 +39,7 @@ function UserWorkflowsSkeleton() {
 }
 
 async function UserWorkflows() {
-  const workflows = await getWorkflowForUser();
+  const workflows = await getWorkflowsForUser();
 
   if (!workflows) {
     return (
@@ -69,7 +69,7 @@ async function UserWorkflows() {
   return (
     <div className="grid grid-cols-1 gap-4">
       {workflows.map((workflow) => (
-        <WorkflowCard key={workflow.id} workflow={{ ...workflow, description: workflow.description ?? '' }} />
+        <WorkflowCard key={workflow.id} workflow={workflow} />
       ))}
     </div>
   );
