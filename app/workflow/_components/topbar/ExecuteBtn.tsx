@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import useExecutionPlan from "@/components/hooks/useExecutionPlan"
+import useExecutionPlan from "@/hooks/useExecutionPlan"
 import { PlayIcon } from "lucide-react"
 import React from "react"
 import { useMutation } from "@tanstack/react-query"

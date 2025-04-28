@@ -4,7 +4,7 @@ import { Position, useEdges } from "@xyflow/react";
 import { Handle } from "@xyflow/react";
 import  NodeParamField  from "./NodeParamField";
 import { ColorForHandle } from "./common";
-import useFlowValidation from "@/components/hooks/useFlowValidation";
+import useFlowValidation from "@/hooks/useFlowValidation";
 
 export function NodeInputs({ children }: { children: React.ReactNode }) {
   return <div className="flex flex-col divide-y gap-2">{children}</div>;

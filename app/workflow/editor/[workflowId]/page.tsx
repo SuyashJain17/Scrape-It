@@ -1,7 +1,6 @@
-
 import { auth } from '@clerk/nextjs/server';
 
-import Editor from '@/app/workflow/_components/Editor';
+import Editor from '../../_components/Editor';
 
 import {prisma} from '@/lib/prisma';
 
@@ -25,12 +24,5 @@ export default async function EditorPage({ params }: { params: { workflowId: str
     return <div>Workflow not found</div>;
   }
 
-  return (
-  <div className="flex h-full w-full flex-col overflow-hidden">
-  <Editor workflow={{
-    ...workflow,
-    createdAt: workflow.createdAt.toISOString(),
-    updatedAt: workflow.updatedAt.toISOString(),
-  }} />
-  </div>)
+  return <Editor workflow={workflow} />;
 }

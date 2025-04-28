@@ -1,10 +1,11 @@
 'use server';
 
+import { redirect } from 'next/navigation';
 import { auth } from '@clerk/nextjs/server';
 
 import {prisma} from '@/lib/prisma';
 
-export default async function getAvailableCredits() {
+export async function setupUser() {
   const { userId } = await auth();
 
   if (!userId) {
@@ -15,7 +16,12 @@ export default async function getAvailableCredits() {
     where: { userId },
   });
 
-  if (!balance) return -1;
+  if (!balance) {
+    // Free 100 credits
+    await prisma.userBalanace.create({
+      data: { userId, credits: 100 },
+    });
+  }
 
-  return balance.credits;
+  redirect('/');
 }

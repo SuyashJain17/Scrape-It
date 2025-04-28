@@ -48,7 +48,6 @@ export async function runWorkflow(form: { workflowId: string; flowDefinition?: s
     executionPlan = JSON.parse(workflow.executionPlan);
     workflowDefinition = workflow.definition;
   } else {
-    // workflow is a draft
     if (!flowDefinition) {
       throw new Error('flow definition is not defined');
     }

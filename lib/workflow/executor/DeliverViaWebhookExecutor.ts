@@ -17,7 +17,7 @@ export async function DeliverViaWebhookExecutor(
     }
     const response = await fetch(targeturl, {
         method: "POST",
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),

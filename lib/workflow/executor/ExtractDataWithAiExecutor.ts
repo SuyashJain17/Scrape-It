@@ -24,7 +24,6 @@ export async function ExtractDataWithAiExecutor(
       environment.log.error('input->content not defined');
     }
 
-    // Get credentials from DB
     const credential = await prisma.credential.findUnique({
       where: { id: credentials },
     });

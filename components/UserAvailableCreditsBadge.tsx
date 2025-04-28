@@ -7,7 +7,7 @@ import { CoinsIcon, Loader2Icon } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import ReactCountUpWrapper from './ReactCountUpWrapper';
 
-import { GetAvailableCredits } from '@/actions/billing/getAvailableCedits';
+import GetAvailableCredits from '@/actions/billing/getAvailableCedits';
 import { cn } from '@/lib/utils';
 
 export default function UserAvailableCreditsBadge() {
