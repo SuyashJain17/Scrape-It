@@ -17,9 +17,8 @@ export async function setupUser() {
   });
 
   if (!balance) {
-    // Free 100 credits
     await prisma.userBalanace.create({
-      data: { userId, credits: 100 },
+      data: { userId, credits: 1000 },
     });
   }
 

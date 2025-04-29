@@ -42,7 +42,7 @@ export default function CreditsPurchase() {
                 <span className="font-medium">
                   {pack.name} - {pack.label}
                 </span>
-                <span className="font-bold text-primary">$ {(pack.price / 100).toFixed(2)}</span>
+                <span className="font-bold text-primary">₹ {(pack.price).toFixed(2)}</span>
               </Label>
             </div>
           ))}

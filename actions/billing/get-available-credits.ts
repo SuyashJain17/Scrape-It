@@ -16,6 +16,7 @@ export async function getAvailableCredits() {
   });
 
   if (!balance) return -1;
+  
 
   return balance.credits;
 }

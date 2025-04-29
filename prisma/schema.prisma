@@ -87,6 +87,7 @@ model ExecutionLog {
 model UserBalanace {
   userId  String @id
   credits Int    @default(0)
+  hasClaimedFreeCredit Boolean @default(false)
 }
 
 model Credential {

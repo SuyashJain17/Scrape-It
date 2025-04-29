@@ -12,6 +12,8 @@ import { getStatsCardsValues } from '@/actions/analytics/get-stats-cards-values'
 import { getWorkflowExecutionStats } from '@/actions/analytics/get-workflow-execution-stats';
 import { getCreditsUsageInPeriod } from '@/actions/analytics/get-credits-usage-in-period';
 import { Period } from '@/types/analytics';
+import { Button } from '@/components/ui/button';
+import { FreeCreditsButton } from '@/components/FreeCreditsButton';
 
 export default function HomePage({ searchParams }: { searchParams: { month?: string; year?: string } }) {
   const currentDate = new Date();
@@ -40,6 +42,8 @@ export default function HomePage({ searchParams }: { searchParams: { month?: str
         <Suspense fallback={<Skeleton className="w-full h-[300px]" />}>
           <CreditsUsageInPeriod selectedPeriod={period} />
         </Suspense>
+          <FreeCreditsButton />
+      
       </div>
     </div>
   );
