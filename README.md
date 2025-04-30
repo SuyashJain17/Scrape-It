@@ -31,7 +31,7 @@
 
 ## 🚀 Getting Started
 
-1. **Sign Up**: Create an account on Scrape-IT and choose a subscription plan. First-time users get **100 FREE credits**.
+1. **Sign Up**: Create an account on Scrape-IT. First-time users get **1000 FREE credits**.
 2. **Claim Your Free Credits**: Instantly activate your free credits to begin executing workflows.
 3. **Add Credentials**: Securely store your API keys, tokens, or website login info.
 4. **Build Your Workflow**: Use Scrape-IT’s visual tools to create multi-step scraping workflows.
