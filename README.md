@@ -2,7 +2,7 @@
 
 **Scrape-IT** is a powerful SaaS platform for workflow automation with integrated web scraping capabilities. Built on **Next.js**, it allows users to automate complex data extraction workflows, securely store credentials, manage billing, and monitor performance—all in one intuitive interface.
 
-![Scrape-IT Screenshot 1](/public/preview/preview.png)  
+![Scrape-IT Screenshot 1](/public/preview/preview_1.png)  
 ![Scrape-IT Screenshot 2](/public/preview/preview_2.png)
 
 ---
