@@ -1,6 +1,6 @@
-# ScrapeFlow
+# Scrape-IT
 
-ScrapeFlow is a powerful SaaS platform for workflow automation with integrated web scraping capabilities. Built on Next.js, FlowScrape lets users automate complex data extraction workflows, securely store credentials, manage billing, and monitor performance—all in one intuitive interface.
+Scrape-IT is a powerful SaaS platform for workflow automation with integrated web scraping capabilities. Built on Next.js, FlowScrape lets users automate complex data extraction workflows, securely store credentials, manage billing, and monitor performance—all in one intuitive interface.
 
 ![FlowScrape1_screenshot](/public/preview/preview_1.png)
 
