@@ -1,52 +1,60 @@
 # Scrape-IT
 
-Scrape-IT is a powerful SaaS platform for workflow automation with integrated web scraping capabilities. Built on Next.js, FlowScrape lets users automate complex data extraction workflows, securely store credentials, manage billing, and monitor performance—all in one intuitive interface.
+**Scrape-IT** is a powerful SaaS platform for workflow automation with integrated web scraping capabilities. Built on **Next.js**, it allows users to automate complex data extraction workflows, securely store credentials, manage billing, and monitor performance—all in one intuitive interface.
 
-![FlowScrape1_screenshot](/public/preview/preview_1.png)
+![Scrape-IT Screenshot 1](/public/preview/preview.png)  
+![Scrape-IT Screenshot 2](/public/preview/preview_2.png)
 
-![FlowScrape2_screenshot](/public/preview/preview_2.png)
+---
+
+## 📑 Table of Contents
+
+- [Key Features](#-key-features)
+- [Getting Started](#-getting-started)
+- [Usage](#usage)
+- [Tech Stack](#-tech-stack)
+- [Development](#development)
+- [Roadmap](#roadmap)
+
+---
 
 ## 📋 Key Features
 
-- **Workflow Automation**: Easily build and execute multi-step workflows. Run tasks in distinct phases with assigned credits, providing granular control over your scraping executions.
+- **Workflow Automation**: Easily build and execute multi-step workflows. Run tasks in distinct phases with assigned credits for fine-grained control over scraping executions.
+- **Advanced Web Scraping Tools**: Design customized workflows with automated actions, scheduled executions, and flexible selector configuration.
+- **Credential Storage**: Securely store API keys, tokens, and other sensitive information using encrypted storage.
+- **Intuitive UI and Analytics**: Built with ShadCn for a modern UI, featuring real-time charts and reports for monitoring performance and credit usage.
+- **Secure Server-Side Handling**: Backend processing powered by Next.js server actions ensures security and reliability.
+- **AI-Powered Web Scraping (Beta)**: Use Gemini-powered AI to intelligently navigate and scrape data from complex websites (optional feature with API key).
 
-- **Advanced Web Scraping Tools**: Access a suite of scraping tools to design customized workflows tailored to different data needs, supporting automated actions and scheduled executions.
-
-- **Credential Storage**: Securely store API keys, tokens, and other sensitive information with encrypted storage, ensuring secure handling of credentials.
-
-- **Billing System with Stripe**: Effortlessly manage your billing and subscriptions with our Stripe integration, allowing for transparent usage tracking, subscription management, and billing history.
-
-- **Intuitive UI and Analytics**: Experience a clean, modern UI built with ShadCn, featuring real-time charts and reports for comprehensive monitoring of scraping performance and usage.
-
-- **Secure Server-Side Handling**: FlowScrape uses Next.js server actions for backend operations, ensuring secure processing of sensitive tasks.
-
-- **AI-Powered Web Scraping (Beta)**: Explore our beta AI-driven feature that intelligently navigates and scrapes data from complex websites.
+---
 
 ## 🚀 Getting Started
 
-1. **Sign Up**: Create an account on FlowScrape and choose a subscription plan that suits your needs. FREE 100 credits are provided for first time users.
-2. **Add Credentials**: Securely store your API keys, tokens, and other credentials for seamless workflow execution.
-3. **Build Your Workflow**: Utilize FlowScrape’s tools to design your workflow phases, and scrape the web with controlled execution.
-4. **Monitor and Analyze**: Track the performance of your workflows through real-time analytics, and manage your billing and usage directly on the dashboard.
+1. **Sign Up**: Create an account on Scrape-IT and choose a subscription plan. First-time users get **100 FREE credits**.
+2. **Claim Your Free Credits**: Instantly activate your free credits to begin executing workflows.
+3. **Add Credentials**: Securely store your API keys, tokens, or website login info.
+4. **Build Your Workflow**: Use Scrape-IT’s visual tools to create multi-step scraping workflows.
+5. **Monitor and Analyze**: View real-time analytics, manage your billing, and optimize your scraping operations from the dashboard.
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [Next.js](https://nextjs.org/), [Tailwind](https://tailwindcss.com/) and [ShadCn](https://shadcn.dev) for UI components
-- **Backend**: Secure server-side processing with [Next.js](https://nextjs.org/) server actions
-- **Billing**: [Stripe](https://stripe.com) integration for payment processing
-- **Security**: Encrypted credential storage to protect sensitive data
-- **Analytics**: Real-time data visualization and reporting
+- **Frontend**: [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [ShadCn](https://shadcn.dev)
+- **Backend**: Secure server-side processing using Next.js Server Actions
+- **Billing (Beta)**: [Stripe](https://stripe.com) integration
+- **Security**: Encrypted storage for sensitive data
+- **Analytics**: Real-time visualization and reporting tools
 
-## 📊 Usage & Billing
+---
 
-FlowScrape's credit-based system allows you to manage workflow executions efficiently. The Stripe integration provides transparent billing, letting you track usage and manage subscriptions.
-
-### Steps
+### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/scrapeflow.git
-   cd scrapeflow
+   git clone https://github.com/SuyashJain17/Scrape-It.git
+   cd Scrape-It
    ```
 
 2. **Install dependencies**
@@ -57,7 +65,7 @@ FlowScrape's credit-based system allows you to manage workflow executions effici
 3. **Set up environment variables**
    Create a `.env` file in the root directory and add the following:
    ```env
-   NEXT_PUBLIC_OPENAI_API_KEY=your_openai_api_key
+   GEMINI_API_KEY=your_gemini_api_key   # Optional - required for AI-powered scraping
    DATABASE_URL=postgresql://username:password@localhost:5432/yourdb
    NEXTAUTH_SECRET=your_nextauth_secret
    NEXTAUTH_URL=http://localhost:3000
@@ -81,6 +89,9 @@ FlowScrape's credit-based system allows you to manage workflow executions effici
 ### 1. **Sign Up/Log In**
    - Use NextAuth.js to sign up or log in to your account.
 
+### 2. **Claim your free credits**
+   - First-time users receive 1000 free credits to test workflow executions.
+
 ### 2. **Create a Workflow**
    - Drag and drop nodes to define scraping tasks.
    - Use AI suggestions for selector optimization.
@@ -103,9 +114,8 @@ FlowScrape's credit-based system allows you to manage workflow executions effici
 - **Build for production**: `npm run build`
 - **Run production server**: `npm start`
 
-### Linting and Formatting
+### Linting
 - **Lint code**: `npm run lint`
-- **Format code**: `npm run format`
 
 ---
 
