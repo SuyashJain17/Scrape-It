@@ -1,9 +1,11 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 
 import prisma from '@/lib/prisma';
 import { symmetricDecrypt } from '@/lib/encryption';
 import { ExtractDataWithAiTask } from '../task/extract-data-with-ai';
 import { ExecutionEnvironment } from '@/types/executor';
+
+import * as cheerio from 'cheerio';
 
 export async function ExtractDataWithAiExecutor(
   environment: ExecutionEnvironment<typeof ExtractDataWithAiTask>
@@ -41,31 +43,63 @@ export async function ExtractDataWithAiExecutor(
       return false;
     }
 
-    const genAI = new GoogleGenerativeAI(plainCredentialValue);
-
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    const groq = new OpenAI({ 
+      apiKey: plainCredentialValue,
+      baseURL: "https://api.groq.com/openai/v1"
+    });
 
     const systemPrompt = `
       You are a webscraper helper that extracts data from HTML or text.
       You will be given a piece of text or HTML content as input and also a prompt with what data to extract.
-      The response should always be ONLY the extracted data as a JSON array or object, with no additional text or explanation.
-      If no data is found, return an empty JSON array [].
+      The response must be exactly one valid JSON object containing the extracted data.
+      Do not add any additional text, markdown, or multiple JSON objects.
+      If no data is found, return an empty JSON object {}.
     `;
 
-    const fullPrompt = `${systemPrompt}\n\nContent:\n${content}\n\nPrompt:\n${prompt}`;
+    // Clean HTML to drastically reduce token count
+    let cleanContent = content;
+    try {
+      const $ = cheerio.load(content);
+      $('script, style, svg, noscript, meta, link, iframe').remove();
+      cleanContent = $('body').html() || content;
+      // Groq free tier limit is strictly 6000 tokens. 
+      // 12000 characters is a safe bet to stay under ~5000 tokens.
+      if (cleanContent.length > 12000) {
+        cleanContent = cleanContent.substring(0, 12000);
+      }
+    } catch (e) {
+      if (cleanContent.length > 12000) {
+        cleanContent = cleanContent.substring(0, 12000);
+      }
+    }
 
-    const result = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text: fullPrompt }] }],
+    const fullPrompt = `Content:\n${cleanContent}\n\nPrompt:\n${prompt}`;
+
+    const response = await groq.chat.completions.create({
+      model: 'llama-3.1-8b-instant',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: fullPrompt }
+      ],
+      temperature: 0,
+      response_format: { type: "json_object" }
     });
 
-    const response = await result.response.text(); 
+    let resultText = response.choices[0]?.message?.content;
 
-    if (!response) {
-      environment.log.error('Empty response from Gemini');
+    if (!resultText) {
+      environment.log.error('Empty response from Groq');
       return false;
     }
 
-    environment.setOutput('Extracted data', response); 
+    // Clean up markdown formatting from the AI response
+    resultText = resultText.trim();
+    if (resultText.startsWith('```')) {
+      resultText = resultText.replace(/^```[a-zA-Z]*\n?/, '');
+      resultText = resultText.replace(/```$/, '').trim();
+    }
+
+    environment.setOutput('Extracted data', resultText); 
 
     return true;
   } catch (error: any) {
